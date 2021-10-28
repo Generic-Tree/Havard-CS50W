@@ -1,0 +1,9 @@
+# VCS filter-out patterns
+#
+# This file specifies untracked files to be ignored in code versioning.
+# See https://www.atlassian.com/git/tutorials/saving-changes/gitignore.
+
+
+# Development
+.idea
+.env
