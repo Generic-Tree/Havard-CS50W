@@ -1,0 +1,34 @@
+name: Submit to Harvard CS50 repository
+
+on:
+  push:
+    branches:
+        - 'web50/projects/2020/x/**'
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
+          fetch-depth: 0
+
+      - name: Configure Git
+        uses: oleksiyrudenko/gha-git-credentials@v2.1.1
+        with:
+          global: true
+          name: ${GITHUB_ACTOR}
+          email: ${GITHUB_ACTOR}@users.noreply.github.com
+          actor: ${GITHUB_ACTOR}
+          token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
+
+      - name: Submit project
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repository: me50/${GITHUB_ACTOR}
+          branch: ${{ github.ref }}
+          force: true

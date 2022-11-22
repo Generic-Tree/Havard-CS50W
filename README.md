@@ -10,6 +10,8 @@ interested on an organized beginning for their projects repo structure.
 [>2]: https://choosealicense.com/licenses/gpl-3.0/ "GPL 3.0 License description"
 
 [1]: https://cs50.harvard.edu/web/2020/ "Havard CS50W 2020 course"
+[2]: https://docs.github.com/en/actions/security-guides/encrypted-secrets "Github: Encripted secrets"
+[3]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token "Github: Creating a personal access token"
 
 [!0]: https://github.com/artu-hnrq/havard-cs50w/generate "Github repository's template generation URL"
 
@@ -23,6 +25,7 @@ interested on an organized beginning for their projects repo structure.
 
   * [Getting started](#getting-started)
     * [Development environment](#development-environment)
+    * [Continuous automation](#continuos-automation)
   * [Project specifications](#project-specifications)
     * [Folder structure](#folder-structure)
   * [Maintenance](#maintenance-)
@@ -48,6 +51,16 @@ Python 3.10.6
 
 Thus, clone the recent-created repository locally,
 and you'll be ready to start developing your projects.
+
+### Continuos automation
+Project submission is automated through a *submit-on-push* GitHub Action.
+It takes in account the branch name to forward the released code to Harvard's `me50/{GITHUB-USERNAME}` repository,
+as required.
+
+For it to work you first need to *Authorize cs50*, as specified on *How to Submit* section of project's statements.
+Then, register a `PERSONAL_ACCESS_TOKEN` [secret][2] to your repo, as described [here][3]. And you'll be setup!
+
+After that, every push to a branch which name starts with `web50/projects/2020/x/` will be submitted accordingly. 
 
 
 ## Project specifications
@@ -81,11 +94,13 @@ which are already placed in each equivalent branch of this repo. Check them out:
 
 ### Folder structure
 For this **main** template branch,
-just the most essential files of an open-source repository are included.
+beside the most essential files of an open-source repository,
+there's also a project submission automation configured.
 
 ```
 .
 ├── .git/                       Version control system folder
+├── .github/                    Repo continuous automation 
 ├── .gitignore                  VCS ignored files manifest
 ├── CHANGELOG.md                Release notes description
 ├── LICENSE                     License file
